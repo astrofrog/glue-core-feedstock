@@ -5,9 +5,6 @@
 # changes to this script, consider a proposal to conda-smithy so that other feedstocks can also
 # benefit from the improvement.
 
-LD_DEBUG=all
-LD_DEBUG_OUTPUT=$CIRLCE_ARTIFACTS/logfile.txt
-
 FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 RECIPE_ROOT=$FEEDSTOCK_ROOT/recipe
 
@@ -38,6 +35,9 @@ cat << EOF | docker run -i \
 
 export BINSTAR_TOKEN=${BINSTAR_TOKEN}
 export PYTHONUNBUFFERED=1
+
+export LD_DEBUG=all
+export LD_DEBUG_OUTPUT=$CIRLCE_ARTIFACTS/logfile.txt
 
 echo "$config" > ~/.condarc
 # A lock sometimes occurs with incomplete builds. The lock file is stored in build_artefacts.
